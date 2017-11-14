@@ -1,0 +1,28 @@
+galaxy_info:
+  author: jygastaud
+  description: Install Brotli for Apache2
+  company: Clever Age
+
+  license: MIT
+
+  min_ansible_version: 2.2
+
+  platforms:
+    - name: Debian
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - precise
+        - raring
+        - saucy
+        - trusty
+        - xenial
+
+  galaxy_tags:
+    - apache
+    - apache2
+    - brotli
+    - compression
+
+dependencies: []

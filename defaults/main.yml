@@ -1,0 +1,18 @@
+---
+# defaults file for apache2-brotli
+
+apache_brotli_repo: "https://github.com/kjdev/apache-mod-brotli.git"
+apache_brotli_src_path: "/srv/apache-mod-brotli"
+apache_brotli_module_path: "/usr/lib/apache2/modules"
+apache_brotli_mods_available_path: "/etc/apache2/mods-available"
+apache_brotli_compression_level: "10"
+apache_brotli_window_size: "22"
+# apache_brotli_filter_notes: []
+apache_brotli_output_filters:
+  - text/html text/plain text/css text/xml
+  - text/css
+  - application/x-javascript application/javascript
+  - application/rss+xml
+  - application/xml
+  - application/json
+  - image/svg+xml

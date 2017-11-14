@@ -1,0 +1,7 @@
+version: '3'
+services:
+    ubuntu:
+        image: jygastaud/ubuntu-sshd-ansible-tests:16.04
+        ports:
+            - '2223:22'
+            - '80:80'

@@ -1,0 +1,49 @@
+---
+- name: Install packages
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - apache2-dev
+    - brotli
+
+- name: Clone repository
+  git:
+    repo: "{{ apache_brotli_repo }}"
+    dest: "{{  apache_brotli_src_path }}"
+    depth: 1
+    recursive: yes
+    update: no
+
+- name: Compile Brotli
+  command: "{{ item }}"
+  args:
+      chdir: "{{  apache_brotli_src_path }}"
+  with_items:
+    - ./autogen.sh
+    - ./configure
+    - make
+
+- name: Install Brotli
+  command: install -p -m 755 -D .libs/mod_brotli.so /usr/lib/apache2/modules/mod_brotli.so
+  args:
+      chdir: "{{  apache_brotli_src_path }}"
+
+- name: Set Brotli configurations
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - src: brotli.conf.j2
+      dest: "{{ apache_brotli_mods_available_path }}/brotli.conf"
+    - src: brotli.load.j2
+      dest: "{{ apache_brotli_mods_available_path }}/brotli.load"
+
+-  name: Enable Brotli
+   apache2_module:
+     state: present
+     name: brotli
+   notify: restart apache
