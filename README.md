@@ -1,26 +1,25 @@
-Role Name
+Apache Brotli
 =========
 
-A brief description of the role goes here.
+Install Apache Brotli module.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+You should have Apache2 installed.
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+Optionnals : 
 
-`apache_brotli_log_format: "\"%r\" %{brotli_out}n/%{brotli_in}n (%{brotli_ratio}n)"` will outpout `LogFormat '"%r" %{brotli_out}n/%{brotli_in}n (%{brotli_ratio}n)' brotli`.
+* apache_brotli_log_format
 
-`apache_brotli_custom_log: "${APACHE_LOG_DIR}/brotli_access.log"` will outpout `CustomLog ${APACHE_LOG_DIR}/brotli_access.log brotli`.
+Example : `apache_brotli_log_format: "\"%r\" %{brotli_out}n/%{brotli_in}n (%{brotli_ratio}n)"` will outpout `LogFormat '"%r" %{brotli_out}n/%{brotli_in}n (%{brotli_ratio}n)' brotli`.
 
-Dependencies
-------------
+* apache_brotli_custom_log
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+Example : `apache_brotli_custom_log: "${APACHE_LOG_DIR}/brotli_access.log"` will outpout `CustomLog ${APACHE_LOG_DIR}/brotli_access.log brotli`.
 
 Example Playbook
 ----------------
@@ -29,14 +28,15 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: servers
       roles:
-         - { role: username.rolename, x: 42 }
+        - { role: jygastaud.apache-ondrej }
+        - { role: jygastaud.apache-brotli }
 
 License
 -------
 
-BSD
+MIT
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+This role was created in 2017 by [Jean-Yves Gastaud](http://gastaud.io).
